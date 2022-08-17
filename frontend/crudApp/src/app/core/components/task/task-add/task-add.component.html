@@ -1,0 +1,46 @@
+<div class="cold-md-4 mx-auto">
+    <div class="card text-center">
+        <h3>New note</h3>
+
+    <div class="card-body text-right">
+        <form [formGroup]="baseForm.baseForm" (ngSubmit)="addTask()" >
+          <div class="mb-3">
+            
+            <input
+              type="text"
+              name="title"
+              class="form-control"
+              formControlName="title"
+              placeholder="Title"
+              autofocus
+            />
+          </div>
+          <div class="mb-3">
+            <textarea
+              type="text"
+              name="description"
+              class="form-control"
+              placeholder="Description"
+              formControlName="description"
+              autofocus
+            ></textarea>
+          </div>
+          <button class="btn btn-primary m-2" [disabled]="!baseForm.baseForm.valid"  type="submit">
+            Add task
+          </button>
+        </form>
+
+        </div>
+        <!-- <form style="text-align: center;" class="col-auto" >
+          <div>
+
+            <label for="title">title </label>
+            <input id="title" type="text" formControlName="title">
+          </div>
+          <textarea name="message" placeholder="Description" formControlName="description"></textarea>
+      
+          <p>Complete the form to enable button.</p>
+          <button class="btn btn-primary m-2" type="submit" [disabled]="!baseForm.baseForm.valid">Submit</button>
+      
+        </form> -->
+
