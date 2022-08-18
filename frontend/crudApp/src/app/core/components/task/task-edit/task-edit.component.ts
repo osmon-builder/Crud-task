@@ -43,27 +43,20 @@ export class TaskEditComponent implements OnInit {
   sendForm() {
     const task = this.baseForm.baseForm.value
     Swal.fire({
-      title: 'Are you sure?',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, updated it!'
-    }).then((result) => {
-      if (result.isConfirmed) {
+      position: 'top-end',
+      icon: 'success',
+      title: 'Task added',
+      showConfirmButton: false,
+      timer: 1500
+    })
         this.taskService.getTask(this._id).subscribe((res:any) => {
           this.task = res
           console.log(this.task._id)
         this.taskService.updateTask(task, this.task._id ).subscribe((res:any) => {
         res.body = this.baseForm.baseForm.value
         
-       })})
-        Swal.fire(
-          'updated!',
-          'Your task has been updated.',
-          'success'
-        )
-      }
+       })
+  
       this.router.navigate(['/tasks'])
     })   
   }

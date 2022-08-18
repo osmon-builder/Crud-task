@@ -47,28 +47,17 @@ export class TaskComponent implements OnInit {
   deletTask(task: Task) {
     console.log(task._id)
     Swal.fire({
-      title: 'Are you sure?',
-      text: "You won't be able to revert this!",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!'
-    }).then((result) => {
-      if (result.isConfirmed) {
+      position: 'top-end',
+      icon: 'success',
+      title: 'Task added',
+      showConfirmButton: false,
+      timer: 1500
+    })
        this.taskService.deleteTask(task._id).subscribe((res:any) => {
         console.log(res)
         this.task = res
        })
-        Swal.fire(
-          'Deleted!',
-          'Your task has been deleted.',
-          'success'
-        )
         window.location.reload()
-      }
-    })
-
   }
 
   editTask(task: Task) {
@@ -78,7 +67,7 @@ export class TaskComponent implements OnInit {
   }
 
   viewMoreTask(task: Task) {
-  
-
-}
+    this.viewMore = this.viewMoreContainer.createComponent(this.simpleViewMore);
+    this.viewMore.instance.task = task;
+  }
 }
