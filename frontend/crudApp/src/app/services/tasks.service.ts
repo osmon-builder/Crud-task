@@ -31,8 +31,12 @@ export class TasksService {
     return this.http.get(`${environment.BaseUrl}/tasks`, {headers: this.headers});
   }
 
+  getTask(id: string){
+    console.log(this.headers)
+    return this.http.get(`${environment.BaseUrl}/tasks/${id}`, {headers: this.headers});
+  }
 
-  addTask(task: any){
+  addTask(task: Task){
     return this.http.post(`${environment.BaseUrl}/tasks/new-task`, task, {headers: this.headers});
   }
 
@@ -40,9 +44,8 @@ export class TasksService {
     return this.http.delete(`${environment.BaseUrl}/tasks/delete/${id}`, {headers: this.headers});
   }
   
-  updateTask(id: string){
-    console.log(this.headers)
-    return this.http.put(`${environment.BaseUrl}/tasks/edit/${id}`, {headers: this.headers});
+  updateTask(task: Task, id: string){
+    return this.http.put(`${environment.BaseUrl}/tasks/edit/${id}`, task, {headers: this.headers});
 
   }
 

@@ -7,6 +7,7 @@ import {
   Renderer2,
   ViewChild
 } from '@angular/core';
+import { Task } from 'src/app/interface/Task.model';
 
 
 @Component({
@@ -18,8 +19,11 @@ export class ViewMoreComponent {
 
   public show = false;
   @ViewChild('modalBack') modalBack !: ElementRef
-  @Input() comic: any;
+  @Input() task: any;
   @Output() closeDialog: EventEmitter<any> = new EventEmitter<any>()
+
+
+
 
   constructor(
     private renderer: Renderer2
@@ -37,9 +41,9 @@ export class ViewMoreComponent {
   }
 
 
-  setComics() {
+  setTask() {
     this.show = false;
-    this.closeDialog.emit(this.comic)
+    this.closeDialog.emit(this.task)
   }
 
 

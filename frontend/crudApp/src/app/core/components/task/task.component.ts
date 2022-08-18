@@ -1,4 +1,4 @@
-import { Component, ComponentRef, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import { Component, ComponentRef, OnInit, ViewChild, ViewContainerRef, SimpleChanges, OnChanges } from '@angular/core';
 import { Task } from 'src/app/interface/Task.model';
 import { TasksService } from 'src/app/services/tasks.service';
 import { Router } from '@angular/router';
@@ -17,6 +17,8 @@ export class TaskComponent implements OnInit {
   public simpleViewMore: any;
   public viewMore: ComponentRef<ViewMoreComponent> = [] as any;
 
+  filter = '';
+
   @ViewChild("viewMore", { static:true, read: ViewContainerRef })
   viewMoreContainer: ViewContainerRef = [] as any;
 
@@ -27,20 +29,22 @@ export class TaskComponent implements OnInit {
     private router: Router
     ) { }
 
+
+
   ngOnInit(): void {
-
-    this.getTask()
-
+    this.getTask();
   }
 
   getTask() {
-    this.taskService.getTasks().subscribe((res: any) => {
+    this.taskService.getTasks().subscribe( (res: any) => {
       console.log(res)
       this.task = res
     })
   }
 
-  deletTicket(task: Task) {
+ 
+
+  deletTask(task: Task) {
     console.log(task._id)
     Swal.fire({
       title: 'Are you sure?',
@@ -55,21 +59,26 @@ export class TaskComponent implements OnInit {
        this.taskService.deleteTask(task._id).subscribe((res:any) => {
         console.log(res)
         this.task = res
-        this.router.navigate(['/tasks'])
        })
         Swal.fire(
           'Deleted!',
           'Your task has been deleted.',
           'success'
         )
+        window.location.reload()
       }
-    })   
+    })
+
   }
 
-//    openViewMore(task: Task){
-//     this.taskService.getTasks().subscribe((res: any) => {
-//     this.simpleViewMore.instance.toggleModal();
-//     this.simpleViewMore.instance.task = res;
-//     })
-// }
+  editTask(task: Task) {
+    
+    this.router.navigate(['/tasks/edit/' + task._id])
+
+  }
+
+  viewMoreTask(task: Task) {
+  
+
+}
 }

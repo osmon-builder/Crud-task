@@ -7,15 +7,17 @@ const {
     getTask, 
     addTask,  
     editTask, 
-    deleteTask 
+    deleteTask,
+    getTaskById
 } = require('../controllers/task.controller');
 const verifyToken = require('../middleware/auth');
 
 router.get('/tasks', verifyToken, getTask);
+router.get('/tasks/:id', verifyToken, getTaskById);
 router.post('/tasks/new-task',verifyToken, addTask);
 
 
-router.put('/tasks/edit/:id',verifyToken, editTask);
+router.put('/tasks/edit/:id', editTask);
 router.delete('/tasks/delete/:id',verifyToken, deleteTask);
 
 

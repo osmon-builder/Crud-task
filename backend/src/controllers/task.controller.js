@@ -12,6 +12,11 @@ taskController.getTask = (req, res) => {
     })
 }
 
+taskController.getTaskById = async(req, res) => {
+    const task = await Task.findById(req.params.id);
+    res.status(200).send(task);
+}
+
 taskController.addTask = (req, res) => {
     const { title, description } = req.body;
     const newTask = new Task({ title, description });
@@ -24,9 +29,7 @@ taskController.addTask = (req, res) => {
 }
 
 
-taskController.renderEditTask = (req, res) => {
-    res.send('RenderNotesEdit');
-}
+
 
 taskController.editTask = async(req, res) => {
     const { title, description } = req.body;

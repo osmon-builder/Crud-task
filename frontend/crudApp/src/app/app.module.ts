@@ -12,7 +12,9 @@ import { SingupComponent } from './core/components/singup/singup.component';
 import { SinginComponent } from './core/components/singin/singin.component';
 import { HeaderComponent } from './header/header.component';
 
+
 import { AuthGuard } from './auth.guard';
+
 
 
 @NgModule({
@@ -21,6 +23,7 @@ import { AuthGuard } from './auth.guard';
     SingupComponent,
     SinginComponent,
     HeaderComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -29,6 +32,7 @@ import { AuthGuard } from './auth.guard';
     HttpClientModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
+
   ],
   providers: [ AuthService, AuthGuard ],
   bootstrap: [AppComponent]

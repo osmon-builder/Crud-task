@@ -3,7 +3,7 @@
         <h3>Edit Note</h3>
 
     <div class="card-body text-right">
-        <form [formGroup]="baseForm.baseForm" (ngSubmit)="sendForm()" >
+        <form [formGroup]="baseForm.baseForm"  >
           <div class="mb-3">
             <input
               type="text"
@@ -24,7 +24,7 @@
               autofocus
             ></textarea>
           </div>
-          <button class="btn btn-primary m-2" [disabled]="!baseForm.baseForm.valid"  type="submit">
+          <button class="btn btn-primary m-2" (click)="sendForm()"  type="submit">
             Add task
           </button>
         </form>

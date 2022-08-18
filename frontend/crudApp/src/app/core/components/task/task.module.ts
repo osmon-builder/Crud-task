@@ -9,14 +9,16 @@ import { TaskEditComponent } from './task-edit/task-edit.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ViewMoreComponent } from './view-more/view-more.component';
 import { BaseFormTaskService } from 'src/app/utilities/base-form.task.service';
+import {MatExpansionModule} from '@angular/material/expansion';
+
 
 
 
 const routes: Routes = [
     { path: "", children: [
-        { path: "", component: TaskComponent },
+        { path: "", component: TaskComponent  },
         { path: "add-task", component: TaskAddComponent },
-        { path: ":id", component: TaskEditComponent },
+        { path: "edit/:id", component: TaskEditComponent },
         { path: "view/:id", component: ViewMoreComponent }
     ] },
 ]
@@ -26,13 +28,15 @@ const routes: Routes = [
     TaskComponent,
     TaskAddComponent,
     TaskEditComponent,
-    ViewMoreComponent
+    ViewMoreComponent,
+
   ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
     HttpClientModule,
     FormsModule,
+    MatExpansionModule,
     RouterModule.forChild(routes)
   ],
   providers: [BaseFormTaskService],

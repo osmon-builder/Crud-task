@@ -3,11 +3,11 @@
         <h3>New note</h3>
 
     <div class="card-body text-right">
-        <form [formGroup]="baseForm.baseForm" (ngSubmit)="addTask()" >
+        <form type="reset" [formGroup]="baseForm.baseForm" (ngSubmit)="addTask()" >
           <div class="mb-3">
             
             <input
-              type="text"
+              id="title"
               name="title"
               class="form-control"
               formControlName="title"
@@ -17,7 +17,7 @@
           </div>
           <div class="mb-3">
             <textarea
-              type="text"
+              id="description"
               name="description"
               class="form-control"
               placeholder="Description"

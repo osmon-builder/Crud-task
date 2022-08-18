@@ -14,13 +14,17 @@ export class TaskAddComponent implements OnInit {
 
 
   task: Task[] = []
+  id: any = ''
 
   constructor(
     private router: Router,
     private taskService: TasksService,
 
+  
+
     public baseForm: BaseFormTaskService
-  ) { }
+  ) { 
+  }
 
   ngOnInit(): void {
   }
@@ -37,17 +41,13 @@ export class TaskAddComponent implements OnInit {
     this.taskService.addTask(task).subscribe((res: any) => {
           res.body
           this.router.navigate(['/tasks'])
-      console.log(res.body)
   })
-  // this.taskService.addTask(this.baseForm.baseForm.value)
-  //   .subscribe(
-  //     (res:any) => {
-  //       console.log(res);
-  //       this.router.navigate(['/tasks']);
-  //     }
-  //   )
+
 
   }
+ 
+  ngOnDestroy(): void {
+    this.baseForm.baseForm.reset()
+  }
+
 }
-
-
