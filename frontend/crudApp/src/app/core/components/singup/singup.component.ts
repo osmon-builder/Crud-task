@@ -33,10 +33,9 @@ export class SingupComponent implements OnInit {
       .subscribe(
         (res:any) => {
           res
-          if (res.status == 200){
+          if (res.status == 200)
             localStorage.setItem('token', res.token);
-           
-          }  
+            
           this.sendSnackBar('El usuario se ha creado correctamente', false);
           this.router.navigate(['/singin'])    
         }, error => {

@@ -11,7 +11,7 @@ import { ViewMoreComponent } from './view-more/view-more.component';
   templateUrl: './task.component.html',
   styleUrls: ['./task.component.scss']
 })
-export class TaskComponent implements OnInit, AfterViewInit {
+export class TaskComponent implements OnInit {
 
   public task: any
   public simpleViewMore : any;
@@ -43,11 +43,11 @@ export class TaskComponent implements OnInit, AfterViewInit {
     })
   }
 
- ngAfterViewInit(): void {
+//  ngAfterViewInit(): void {
     
-    this.simpleViewMore = this.viewMoreContainer.createComponent(ViewMoreComponent);
-    this.simpleViewMore.intance.closeDialog();
- }
+//     this.simpleViewMore = this.viewMoreContainer.createComponent(ViewMoreComponent);
+//     this.simpleViewMore.intance.closeDialog();
+//  }
 
   deletTask(task: Task) {
     const index = this.task.indexOf(task);
