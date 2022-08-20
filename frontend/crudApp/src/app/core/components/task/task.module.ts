@@ -19,7 +19,6 @@ const routes: Routes = [
         { path: "", component: TaskComponent  },
         { path: "add-task", component: TaskAddComponent },
         { path: "edit/:id", component: TaskEditComponent },
-        { path: "view/:id", component: ViewMoreComponent }
     ] },
 ]
 
@@ -40,6 +39,7 @@ const routes: Routes = [
     RouterModule.forChild(routes)
   ],
   providers: [BaseFormTaskService],
+  entryComponents: [ViewMoreComponent],
   exports: [
 
   ]

@@ -11,7 +11,7 @@ import { AppComponent } from './app.component';
 import { SingupComponent } from './core/components/singup/singup.component';
 import { SinginComponent } from './core/components/singin/singin.component';
 import { HeaderComponent } from './header/header.component';
-
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { AuthGuard } from './auth.guard';
 
@@ -32,6 +32,7 @@ import { AuthGuard } from './auth.guard';
     HttpClientModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
+    MatSnackBarModule,
 
   ],
   providers: [ AuthService, AuthGuard ],

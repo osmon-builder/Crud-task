@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-singup',
@@ -15,11 +16,13 @@ export class SingupComponent implements OnInit {
     password: '',
     confirm_password: ''
   };
+ 
 
 
   constructor( 
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private snackBar: MatSnackBar,
     ) { }
 
   ngOnInit(): void {
@@ -29,11 +32,21 @@ export class SingupComponent implements OnInit {
     this.authService.signUp(this.user)
       .subscribe(
         (res:any) => {
-          console.log(res);
-          localStorage.setItem('token', res.token);
-          this.router.navigate(['/singin']);
+          res
+          if (res.status == 200){
+            localStorage.setItem('token', res.token);
+           
+          }  
+          this.sendSnackBar('El usuario se ha creado correctamente', false);
+          this.router.navigate(['/singin'])    
+        }, error => {
+          this.sendSnackBar('Error al crear un usuario', true);
         }
-      )
+        )
+      };
+
+  sendSnackBar(message: string, error: any){
+    this.snackBar.open(message, error ? 'Fallo' : 'Exitoso', { duration: 2000 });
   }
 
 }

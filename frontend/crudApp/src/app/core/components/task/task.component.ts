@@ -1,4 +1,4 @@
-import { Component, ComponentRef, OnInit, ViewChild, ViewContainerRef, SimpleChanges, OnChanges } from '@angular/core';
+import { AfterViewInit, Component, ComponentRef, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { Task } from 'src/app/interface/Task.model';
 import { TasksService } from 'src/app/services/tasks.service';
 import { Router } from '@angular/router';
@@ -11,11 +11,11 @@ import { ViewMoreComponent } from './view-more/view-more.component';
   templateUrl: './task.component.html',
   styleUrls: ['./task.component.scss']
 })
-export class TaskComponent implements OnInit {
+export class TaskComponent implements OnInit, AfterViewInit {
 
-  public task: Task[] = []
-  public simpleViewMore: any;
-  public viewMore: ComponentRef<ViewMoreComponent> = [] as any;
+  public task: any
+  public simpleViewMore : any;
+  public viewMore: ComponentRef<ViewMoreComponent> = [] as any
 
   filter = '';
 
@@ -35,6 +35,7 @@ export class TaskComponent implements OnInit {
     this.getTask();
   }
 
+
   getTask() {
     this.taskService.getTasks().subscribe( (res: any) => {
       console.log(res)
@@ -42,22 +43,28 @@ export class TaskComponent implements OnInit {
     })
   }
 
- 
+ ngAfterViewInit(): void {
+    
+    this.simpleViewMore = this.viewMoreContainer.createComponent(ViewMoreComponent);
+    this.simpleViewMore.intance.closeDialog();
+ }
 
   deletTask(task: Task) {
-    console.log(task._id)
+    const index = this.task.indexOf(task);
     Swal.fire({
       position: 'top-end',
       icon: 'success',
-      title: 'Task added',
+      title: 'Task deleted successfully',
       showConfirmButton: false,
       timer: 1500
     })
        this.taskService.deleteTask(task._id).subscribe((res:any) => {
         console.log(res)
-        this.task = res
+        this.task.splice(index, 1)
+        console.log(this.task)
+
        })
-        window.location.reload()
+
   }
 
   editTask(task: Task) {
@@ -66,8 +73,5 @@ export class TaskComponent implements OnInit {
 
   }
 
-  viewMoreTask(task: Task) {
-    this.viewMore = this.viewMoreContainer.createComponent(this.simpleViewMore);
-    this.viewMore.instance.task = task;
-  }
+
 }

@@ -1,1 +1,28 @@
-<p>view-more works!</p>
+
+
+    <div class="modalc" #modalBack *ngIf="show">
+
+        <div class="modalc__content">
+           <div class="modalc__close" (click)="show= false"></div>
+           <div class="row pdd-y-40">
+               <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                   <img width="100%" height="90%" >
+               </div>
+               <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                   <strong style="font-size:large; text-align: center;">{{task.title }}</strong>
+                   <div class="modalc__contenedor">
+                       <p style=" text-align: justify; margin-top: 10px;">{{task.description ? task.description : 'No existe una descripción para este comic'}}</p>
+                   </div>
+               </div>
+           </div>
+           <div class="modalc__footer">
+               
+               <div class="modalc__footer__button modalc__footer__button--buy">
+                   <div  class=" modalc__footer__button__icon buy"></div>
+                   BUY FOR $3.99
+               </div>
+           </div>
+       </div>
+   
+   </div>
+       
